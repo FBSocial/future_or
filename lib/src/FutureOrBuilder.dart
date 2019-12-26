@@ -7,7 +7,8 @@ class FutureOrBuilder<T> extends StatefulWidget {
   final FutureOr<T> futureOr;
   final AsyncWidgetBuilder<T> builder;
 
-  const FutureOrBuilder({Key key, this.futureOr, this.builder, this.initialData})
+  const FutureOrBuilder(
+      {Key key, this.futureOr, this.builder, this.initialData})
       : super(key: key);
 
   @override

@@ -1,7 +1,6 @@
 import 'dart:async' show FutureOr;
 
 extension FutureOrTools<T> on FutureOr<T> {
-
   bool get isFuture => !isNotFuture;
 
   bool get isNotFuture => this is! Future;
