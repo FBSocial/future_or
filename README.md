@@ -2,7 +2,7 @@
 
 A collection of widgets, methods and extension methods that make working with FutureOr objects easier
 
-### Extension method
+### Extension methods
 
 #### Getters
 

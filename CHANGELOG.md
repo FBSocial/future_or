@@ -1,3 +1,7 @@
+## [0.1.1]
+
+* added dartdoc
+
 ## [0.1.0]
 
 * added FutureOrBuilder based on FutureBuilder
