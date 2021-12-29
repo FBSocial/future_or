@@ -1,11 +1,11 @@
 name: future_or
 description: A collection of widgets, methods and extention methods that make working with FutureOr objects easier.
-version: 0.1.1
+version: 2.0.0
 author: Aligator <Ali.gh2236@gmail.com>
 homepage: https://github.com/ali2236/future_or
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:

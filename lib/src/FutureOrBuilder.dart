@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'extention.dart';
 
 class FutureOrBuilder<T> extends StatefulWidget {
-  final T initialData;
-  final FutureOr<T> futureOr;
+  final T? initialData;
+  final FutureOr<T>? futureOr;
   final AsyncWidgetBuilder<T> builder;
 
   const FutureOrBuilder(
-      {Key key, this.futureOr, this.builder, this.initialData})
+      {Key? key, this.futureOr, required this.builder, this.initialData})
       : super(key: key);
 
   @override
@@ -23,9 +23,9 @@ class _FutureOrBuilderState<T> extends State<FutureOrBuilder> {
         context,
         AsyncSnapshot.withData(ConnectionState.done, widget.futureOr.value),
       );
-    return FutureBuilder<T>(
+    return FutureBuilder<T?>(
       initialData: widget.initialData,
-      future: widget.futureOr.asFuture,
+      future: widget.futureOr.asFuture?.then((value) => value as T?),
       builder: widget.builder,
     );
   }
