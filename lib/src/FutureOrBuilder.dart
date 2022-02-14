@@ -23,9 +23,9 @@ class _FutureOrBuilderState<T> extends State<FutureOrBuilder> {
         context,
         AsyncSnapshot.withData(ConnectionState.done, widget.futureOr.value),
       );
-    return FutureBuilder<T?>(
+    return FutureBuilder<T>(
       initialData: widget.initialData,
-      future: widget.futureOr.asFuture?.then((value) => value as T?),
+      future: widget.futureOr?.asFuture as Future<T>?,
       builder: widget.builder,
     );
   }
