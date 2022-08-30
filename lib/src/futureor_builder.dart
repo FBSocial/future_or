@@ -12,20 +12,26 @@ class FutureOrBuilder<T> extends StatefulWidget {
       : super(key: key);
 
   @override
-  _FutureOrBuilderState createState() => _FutureOrBuilderState<T>();
+  FutureOrBuilderState createState() => FutureOrBuilderState<T>();
 }
 
-class _FutureOrBuilderState<T> extends State<FutureOrBuilder> {
+class FutureOrBuilderState<T> extends State<FutureOrBuilder<T>> {
   @override
   Widget build(BuildContext context) {
-    if (widget.futureOr.isNotFuture)
+    if (widget.futureOr == null) {
       return widget.builder(
         context,
-        AsyncSnapshot.withData(ConnectionState.done, widget.futureOr.value),
+        AsyncSnapshot.withData(ConnectionState.done, const SizedBox() as T),
       );
+    } else if (widget.futureOr!.isNotFuture) {
+      return widget.builder(
+        context,
+        AsyncSnapshot.withData(ConnectionState.done, widget.futureOr!.value),
+      );
+    }
     return FutureBuilder<T>(
       initialData: widget.initialData,
-      future: widget.futureOr?.asFuture as Future<T>?,
+      future: widget.futureOr?.asFuture,
       builder: widget.builder,
     );
   }
