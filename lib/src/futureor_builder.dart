@@ -4,34 +4,28 @@ import 'extention.dart';
 
 class FutureOrBuilder<T> extends StatefulWidget {
   final T? initialData;
-  final FutureOr<T>? futureOr;
+  final FutureOr<T> futureOr;
   final AsyncWidgetBuilder<T> builder;
 
   const FutureOrBuilder(
-      {Key? key, this.futureOr, required this.builder, this.initialData})
+      {Key? key,required this.futureOr, required this.builder, this.initialData})
       : super(key: key);
 
   @override
-  FutureOrBuilderState createState() => FutureOrBuilderState<T>();
+  _FutureOrBuilderState createState() => _FutureOrBuilderState<T>();
 }
 
-class FutureOrBuilderState<T> extends State<FutureOrBuilder<T>> {
+class _FutureOrBuilderState<T> extends State<FutureOrBuilder<T>> {
   @override
   Widget build(BuildContext context) {
-    if (widget.futureOr == null) {
+    if (widget.futureOr.isNotFuture)
       return widget.builder(
         context,
-        AsyncSnapshot.withData(ConnectionState.done, const SizedBox() as T),
+        AsyncSnapshot.withData(ConnectionState.done, widget.futureOr.value),
       );
-    } else if (widget.futureOr!.isNotFuture) {
-      return widget.builder(
-        context,
-        AsyncSnapshot.withData(ConnectionState.done, widget.futureOr!.value),
-      );
-    }
     return FutureBuilder<T>(
       initialData: widget.initialData,
-      future: widget.futureOr?.asFuture,
+      future: widget.futureOr.asFuture as Future<T>,
       builder: widget.builder,
     );
   }
